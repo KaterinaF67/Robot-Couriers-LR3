@@ -1,0 +1,61 @@
+{
+  "scenarios": {
+    "low": {
+      "width": 16,
+      "height": 16,
+      "n_robots": 6,
+      "n_stations": 2,
+      "n_orders": 14,
+      "arrivals": 80,
+      "max_ticks": 750,
+      "battery_capacity": 100,
+      "charging_rate": 5,
+      "obstacles": 0.06
+    },
+    "medium": {
+      "width": 20,
+      "height": 20,
+      "n_robots": 10,
+      "n_stations": 1,
+      "n_orders": 24,
+      "arrivals": 100,
+      "max_ticks": 1100,
+      "battery_capacity": 105,
+      "charging_rate": 5,
+      "obstacles": 0.08
+    },
+    "high": {
+      "width": 24,
+      "height": 24,
+      "n_robots": 14,
+      "n_stations": 2,
+      "n_orders": 36,
+      "arrivals": 130,
+      "max_ticks": 1400,
+      "battery_capacity": 110,
+      "charging_rate": 5,
+      "obstacles": 0.1
+    }
+  },
+  "seeds": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9
+  ],
+  "assignment_mode": "central",
+  "charge_policies": [
+    "fifo",
+    "priority"
+  ],
+  "initial_battery_rule": "capacity * (0.48 + 0.04*(robot_index % 5))",
+  "priority_rule": "100*(1-battery/capacity)+0.8*queue_wait_ticks",
+  "urgent_cutoff": "battery_at_request <= 35% of capacity",
+  "metric_scope": "mean_queue_wait uses granted requests; pending requests and their maximum wait are reported separately"
+}
